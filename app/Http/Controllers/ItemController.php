@@ -89,7 +89,7 @@ class ItemController extends Controller
         $item->img_path = 'images/'.$request->img_path;
         $item->save();
        
-        Storage::put('public/images/'.base64_decode(file_get_contents($files)));
+        Storage::put('public/images/'.$request->img_path.'.jpg',base64_decode($request->uploads));
        
         return response()->json(["status" => "item updated successfully.","item" => $item,"status" => 200]);
     }
