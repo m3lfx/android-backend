@@ -41,11 +41,12 @@ class ItemController extends Controller
         $item->sell_price = $request->sell_price;
         $item->cost_price = $request->cost_price;
         $files = $request->file('uploads');
-        $item->img_path = 'images/'.$request->img_path.'.jpg';
+        // $item->img_path = 'images/'.$request->img_path.'.jpg';
+        $item->img_path = 'images/'.$request->img_path;
         $item->save();
         // Storage::put('public/images/'.base64_decode(file_get_contents($files)));
-        Storage::put('public/images/'.$request->img_path.'.jpg',base64_decode($request->uploads));
-        return response()->json(["success" => "item created successfully.","item" => $item,"status" => 200]);
+        Storage::put('public/images/'.$request->img_path,base64_decode($request->uploads));
+        return response()->json(["message" => "item created successfully.","item" => $item,"status" => 200]);
     }
 
     /**
@@ -86,12 +87,13 @@ class ItemController extends Controller
         $item->sell_price = $request->sell_price;
         $item->cost_price = $request->cost_price;
         $files = $request->file('uploads');
+        // $item->img_path = 'images/'.$request->img_path.'.jpg';
         $item->img_path = 'images/'.$request->img_path;
         $item->save();
        
-        Storage::put('public/images/'.$request->img_path.'.jpg',base64_decode($request->uploads));
+        Storage::put('public/images/'.$request->img_path,base64_decode($request->uploads));
        
-        return response()->json(["status" => "item updated successfully.","item" => $item,"status" => 200]);
+        return response()->json(["message" => "item updated successfully.","item" => $item,"status" => 200]);
     }
 
     /**
