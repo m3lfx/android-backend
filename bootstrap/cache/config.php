@@ -4,7 +4,7 @@
     'name' => 'Laravel',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://localhost:4000',
+    'url' => 'http://localhost',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
@@ -366,7 +366,7 @@
       array (
         'driver' => 'local',
         'root' => 'D:\\backend_mobile\\storage\\app/public',
-        'url' => 'http://localhost:4000/storage',
+        'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
       's3' => 
