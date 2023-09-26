@@ -9,9 +9,9 @@ use Storage;
 class ItemController extends Controller
 {
 
-    // public function __construct() {
-    //     $this->middleware('auth:api', ['except' => ['index']]);
-    // }
+    public function __construct() {
+        $this->middleware('auth:api', ['except' => ['index', 'edit']]);
+    }
     // public function __construct() {
     //     $this->middleware('auth:api');
     // }
@@ -77,7 +77,8 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Item::find($id);
+        return response()->json($item);
     }
 
     /**
@@ -93,12 +94,19 @@ class ItemController extends Controller
         $item->description = $request->description;
         $item->sell_price = $request->sell_price;
         $item->cost_price = $request->cost_price;
-        $files = $request->file('uploads');
+        
+        // if($request->file('uploads')) {
+        //     $item->img_path = 'images/'.$request->img_path;
+        // }
+        // else {
+        //     $item->img_path = 
+        // }
+
         // $item->img_path = 'images/'.$request->img_path.'.jpg';
-        $item->img_path = 'images/'.$request->img_path;
+        // $item->img_path = 'images/'.$request->img_path;
         $item->save();
        
-        Storage::put('public/images/'.$request->img_path,base64_decode($request->uploads));
+        // Storage::put('public/images/'.$request->img_path,base64_decode($request->uploads));
        
         return response()->json(["message" => "item updated successfully.","item" => $item,"status" => 200]);
     }
